@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Which "Sex and the City" Character Are You?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-image: url('background.jpeg');
+            background-size: cover;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            background-color: rgba(255, 105, 180, 0.8);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin: 20px 0;
+        }
+        button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #ff85c0;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Which "Sex and the City" Character Are You? ✨</h1>
+    <div class="container">
+        <form id="quiz">
+            <!-- Question 1 -->
+            <div class="question">
+                <p><strong>1. What’s your ideal Friday night? 🌆</strong></p>
+                <label><input type="radio" name="q1" value="Carrie"> Writing and socializing 📚</label><br>
+                <label><input type="radio" name="q1" value="Samantha"> Partying all night 🎉</label><br>
+                <label><input type="radio" name="q1" value="Charlotte"> A quiet dinner date 🍽️</label><br>
+                <label><input type="radio" name="q1" value="Miranda"> Relaxing with a book 📖</label>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question">
+                <p><strong>2. How would your friends describe you? 🧠</strong></p>
+                <label><input type="radio" name="q2" value="Carrie"> Creative and thoughtful 🎨</label><br>
+                <label><input type="radio" name="q2" value="Samantha"> Bold and confident 🎤</label><br>
+                <label><input type="radio" name="q2" value="Charlotte"> Kind and traditional 🌟</label><br>
+                <label><input type="radio" name="q2" value="Miranda"> Smart and practical 📝</label>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question">
+                <p><strong>3. What’s your favorite drink? 🍷</strong></p>
+                <label><input type="radio" name="q3" value="Carrie"> Cosmopolitan 🍇</label><br>
+                <label><input type="radio" name="q3" value="Samantha"> Champagne 🍾</label><br>
+                <label><input type="radio" name="q3" value="Charlotte"> Red Wine 🍇</label><br>
+                <label><input type="radio" name="q3" value="Miranda"> Whiskey 🍻</label>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question">
+                <p><strong>4. What’s your go-to outfit? 👗</strong></p>
+                <label><input type="radio" name="q4" value="Carrie"> Trendy and unique 💎</label><br>
+                <label><input type="radio" name="q4" value="Samantha"> Bold and daring 💅</label><br>
+                <label><input type="radio" name="q4" value="Charlotte"> Classic and elegant 🌈</label><br>
+                <label><input type="radio" name="q4" value="Miranda"> Comfortable and practical 👖</label>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question">
+                <p><strong>5. What’s your dream vacation destination? 🏜️</strong></p>
+                <label><input type="radio" name="q5" value="Carrie"> Paris 🌇</label><br>
+                <label><input type="radio" name="q5" value="Samantha"> Ibiza 🌺</label><br>
+                <label><input type="radio" name="q5" value="Charlotte"> Tuscany 🌾</label><br>
+                <label><input type="radio" name="q5" value="Miranda"> Tokyo 🌟</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" onclick="getResult()">Find Out 👀</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function getResult() {
+            const answers = {};
+            const form = document.getElementById("quiz");
+
+            // Collect all selected answers
+            const questions = form.querySelectorAll(".question");
+            questions.forEach((question, index) => {
+                const selected = question.querySelector("input[type='radio']:checked");
+                if (selected) {
+                    const value = selected.value;
+                    answers[value] = (answers[value] || 0) + 1; // Count votes for each character
+                }
+            });
+
+            // Determine the character with the most votes
+            const character = Object.keys(answers).reduce((a, b) => (answers[a] > answers[b] ? a : b), null);
+
+            // Display the result
+            const resultDiv = document.getElementById("result");
+            if (character) {
+                resultDiv.innerHTML = `You are most like <strong>${character}</strong>! ✨`;
+            } else {
+                resultDiv.innerHTML = "Please answer all the questions to get your result!";
+            }
+        }
+    </script>
+</body>
+</html>
